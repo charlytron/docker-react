@@ -1,0 +1,9 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t charlytron/docker-react -f Dockerfile.dev .
+
+script:
+    - docker run charlytron/docker-react npm run test -- --coverage
