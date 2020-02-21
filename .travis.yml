@@ -10,3 +10,16 @@ before_install:
 
 script:
     - docker run charlytron/docker-react npm run test -- --coverage
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "docker-react"
+    env: DockerReact-env
+    bucket_name: elasticbeanstalk-us-east-2-656841813376
+    bucket_path: "docker-react"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESSKEY
+    secret_access_key: 
+        secure: "$AWS_SECRET_KEY"
